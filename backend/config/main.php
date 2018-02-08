@@ -12,7 +12,15 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'language' => 'zh-CN',
-    'modules' => [],
+    'modules' => [
+        // yii-admin插件配置(rbac)
+        'admin' => [
+            'class' => 'mdm\admin\Module',
+        ],
+    ],
+    'aliases' => [      // yii-admin插件配置(rbac)
+        '@mdm/admin' => '@vendor/mdmsoft/yii2-admin',
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -44,8 +52,23 @@ return [
             'rules' => [
             ],
         ],
+
+        'authManager' => [      // yii-admin插件配置(rbac)
+            'class' => 'yii\rbac\DbManager',
+            'defaultRoles' => ['guest'],
+        ],
+    ],
+    'as access' => [        // yii-admin插件配置(rbac)
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            // 这里是允许访问的action，不受权限控制
+            // controller/action
+            'site/login',
+            'site/logout',
+            'site/index'
+        ]
     ],
 //    'as myBehavior2' => \backend\components\MyBehavior::className(),
-    'as access' => \backend\components\AccessController::className(),
+//    'as access' => \backend\components\AccessController::className(),
     'params' => $params,
 ];
