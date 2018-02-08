@@ -13,6 +13,13 @@ return [
     'bootstrap' => ['log'],
     'language' => 'zh-CN',
     'modules' => [
+        /**
+         * TODO：修改 vendor->mdmsoft->yii2-admin->models->search->AuthItem.php->第66行
+         * // $this->type == Item::TYPE_ROLE：返回角色列表
+         * // strncmp($item->name, '/', 1) === 0：权限的第一个字符就是'/'，返回权限列表
+         *
+         * return $this->type == Item::TYPE_ROLE xor strncmp($item->name, '/', 1) === 0;
+         */
         // yii-admin插件配置(rbac)
         'admin' => [
             'class' => 'mdm\admin\Module',
