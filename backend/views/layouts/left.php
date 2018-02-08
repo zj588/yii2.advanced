@@ -1,3 +1,8 @@
+<?php
+
+use mdm\admin\components\MenuHelper;
+use dmstr\widgets\Menu;
+?>
 <aside class="main-sidebar">
 
     <section class="sidebar">
@@ -73,6 +78,20 @@
                 ],
             ]
         ) ?>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <!--        根据用户拥有的权限显示菜单           -->
+        <?=
+        Menu::widget([
+            'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
+            'items' => MenuHelper::getAssignedMenu(Yii::$app->user->id)
+        ]);
+        ?>
+        <!--        根据用户拥有的权限显示菜单           -->
 
     </section>
 

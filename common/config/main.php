@@ -10,5 +10,13 @@ return [
         "authManager" => [
             "class" => 'yii\rbac\DbManager',
         ],
+        // 语言包配置
+        'i18n' => [
+            'translations' => [
+                '*' => [
+                    'class' => 'yii\i18n\PhpMessageSource'
+                ],
+            ],
+        ]
     ],
 ];
